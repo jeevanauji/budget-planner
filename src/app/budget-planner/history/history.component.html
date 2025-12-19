@@ -1,0 +1,55 @@
+<app-side-nav ngSkipHydration></app-side-nav>
+
+<div class="main-container">
+    <div class="container">
+        <h2>Transaction History</h2>
+        <form [formGroup]="historyForm" (ngSubmit)="onSubmit()" class="input-form">
+            <div class="form-group">
+                <select formControlName="month" id="month" class="form-control" (change)="onChange($event)">
+                    <option value="" disabled>Select Month</option>
+                    <option value="January">January</option>
+                    <option value="February">February</option>
+                    <option value="March">March</option>
+
+                </select>
+            </div>
+            <div class="form-group"></div>
+            <div class="form-group">
+                Total History for {{ selectedMonth }}: ${{ calculateTotalHistory(selectedMonth) }}
+
+            </div>
+            
+            <div class="form-group">
+
+            </div>
+          
+            <div class="form-group">
+            </div>
+            <div class="form-group"></div>
+        </form>
+        <hr>
+        <h3> Transaction of - {{ selectedMonth }}</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Type of History</th>
+                    <th>Amount</th>
+                    <!-- <th>History</th> -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let history of getFilteredHistory()">
+                    <td>{{ history.source }}</td>
+                    <td>{{ history.amount }}</td>
+                    <!-- <td>{{ history.investments }}</td> -->
+                </tr>
+            </tbody>
+        </table>
+        <div class="input-form">
+            <div class="form-group">
+            </div>
+            <button class="btn btn-primary" (click)="onBack()">Back</button>
+            <!-- <button class="btn btn-primary" (click)="saveForm()">Save</button> -->
+        </div>
+    </div>
+</div>

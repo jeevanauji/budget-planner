@@ -37,7 +37,7 @@ export class LoginComponent {
   login() {
     if (this.loginForm.valid) {
       console.log('Login Data:', this.loginForm.value);
-      this.router.navigate(['/budget-planner/dasboard']);
+      this.router.navigate(['/budget-planner/dashboard']);
     } else {
       this.snackbar.open('Please fill in all required fields correctly.', 'Close', { duration: 3000 });
     }

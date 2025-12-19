@@ -1,11 +1,11 @@
 <div class="navbar">
-    <h2>INCOME</h2>
+    <h2>TODO Transactions</h2>
 </div>
 
 <div class="main-container">
     <div class="container">
-        <h2>Income</h2>
-        <form [formGroup]="incomeForm" (ngSubmit)="onSubmit()" class="input-form">
+        <h2>Transactions</h2>
+        <form [formGroup]="todoForm" (ngSubmit)="onSubmit()" class="input-form">
             <div class="form-group">
                 <select formControlName="month" id="month" class="form-control" (change)="onChange($event)">
                     <option value="" disabled>Select Month</option>
@@ -17,30 +17,23 @@
             </div>
             <div class="form-group"></div>
             <div class="form-group">
-                Total Income for {{ selectedMonth }}: ${{ calculateTotalIncome(selectedMonth) }}
+                Total Todo for {{ selectedMonth }}: ${{ calculateTotalTodo(selectedMonth) }}
 
             </div>
             <div class="form-group">
-                <label for="investments">Investment:</label>
+                <label for="source">Todo Type:</label>
 
-                <select formControlName="investments" id="investments" class="form-control"
-                    [class.disabled-dropdown]="!monthSelected">
-
-                    <option value="" disabled>Select Investment</option>
-                    <option value="401k">401k</option>
-                    <option value="Stocks">Stocks</option>
-                    <option value="Real estate">Real estate</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="source">Source:</label>
                 <select formControlName="source" id="source" class="form-control"
                     [class.disabled-dropdown]="!monthSelected">
-                    <option value="" disabled>Select Source</option>
+
+                    <option value="" disabled>Select Todo</option>
                     <option value="Salary">Salary</option>
                     <option value="Freelance">Freelance</option>
                     <option value="Rental">Rental</option>
                 </select>
+            </div>
+            <div class="form-group">
+              
             </div>
             <div class="form-group">
                 <label for="amount">Amount:</label>
@@ -55,20 +48,20 @@
                 [class.disabled-dropdown]="!monthSelected"> Add </button>
         </form>
         <hr>
-        <h3> Income List - {{ selectedMonth }}</h3>
+        <h3> Todo List - {{ selectedMonth }}</h3>
         <table class="table">
             <thead>
                 <tr>
-                    <th>Source of Income</th>
+                    <th>Type of Todo</th>
                     <th>Amount</th>
-                    <th>Investment</th>
+                    <!-- <th>Todo</th> -->
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let income of getFilteredIncome()">
-                    <td>{{ income.source }}</td>
-                    <td>{{ income.amount }}</td>
-                    <td>{{ income.investments }}</td>
+                <tr *ngFor="let todo of getFilteredTodo()">
+                    <td>{{ todo.source }}</td>
+                    <td>{{ todo.amount }}</td>
+                    <!-- <td>{{ todo.investments }}</td> -->
                 </tr>
             </tbody>
         </table>
